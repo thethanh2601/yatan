@@ -1,0 +1,23 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["es6"],
+    "noEmit": true,
+    "strict": true,
+    "allowJs": true,
+    "target": "esnext",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "useDefineForClassFields": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}
