@@ -11,7 +11,6 @@ import { color } from '../../themes/colors';
 import { ms } from '../../themes/platform';
 import { TS } from '../../themes/text-style';
 import { AppTouchableOpacity } from '../app-touchable-opacity';
-import { S } from '../../themes';
 
 export type ButtonProps = {
   title?: string;
@@ -23,89 +22,73 @@ export type ButtonProps = {
   disabled?: boolean;
   loading?: boolean;
   loadingColor?: string;
-  size?: 'sm' | 'md' | 'lg';
-  outLine?: 'secondary' | 'tertiary';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  outLine?: 'gray' | 'primary';
   children?: React.ReactNode;
 };
 
 export function AppButton(props: ButtonProps) {
   const isDisable = props.disabled || props.loading;
-  const { size = 'md' } = props;
+  const { size = 'lg' } = props;
 
   const mappingPaddingSizeButton = () => {
     switch (size) {
+      case 'xs':
+        return { paddingHorizontal: ms(12), paddingVertical: ms(6) };
       case 'sm':
-        return {
-          paddingHorizontal: ms(12),
-          paddingVertical: ms(6),
-          height: ms(32),
-        };
+        return { paddingHorizontal: ms(12), paddingVertical: ms(8) };
       case 'md':
-        return {
-          paddingHorizontal: ms(18),
-          paddingVertical: ms(8),
-          height: ms(40),
-        };
+        return { paddingHorizontal: ms(14), paddingVertical: ms(10) };
       case 'lg':
-        return {
-          paddingHorizontal: ms(22),
-          paddingVertical: ms(14),
-          height: ms(56),
-        };
+        return { paddingHorizontal: ms(16), paddingVertical: ms(10) };
+      case 'xl':
+        return { paddingHorizontal: ms(18), paddingVertical: ms(12) };
+      case '2xl':
+        return { paddingHorizontal: ms(18), paddingVertical: ms(12) };
       default:
-        return {
-          paddingHorizontal: ms(18),
-          paddingVertical: ms(8),
-          height: ms(40),
-        };
+        return { paddingHorizontal: ms(16), paddingVertical: ms(10) };
     }
   };
 
   const mappingTitleStyleButton = () => {
     switch (size) {
+      case 'xs':
+        return TS.textXsSemibold;
       case 'sm':
         return TS.textSmSemibold;
       case 'md':
-        return TS.textMdSemibold;
+        return TS.textSmSemibold;
       case 'lg':
+        return TS.textMdSemibold;
+      case 'xl':
+        return TS.textMdSemibold;
+      case '2xl':
         return TS.textLgSemibold;
       default:
         return TS.textMdSemibold;
     }
   };
 
-  const mappingBorderRadius = () => {
-    switch (size) {
-      case 'sm':
-        return ms(8);
-      case 'md':
-        return ms(10);
-      case 'lg':
-        return ms(12);
-      default:
-        return ms(10);
-    }
-  };
-
   const mappingOutlineColor = () => {
     switch (props.outLine) {
-      case 'secondary':
+      case 'gray':
         return {
-          color: color.primary[300],
-          backgroundColor: color.primary[900],
-          borderColor: color.primary[700],
-        };
-      case 'tertiary':
-        return {
-          color: color.primary[200],
-          backgroundColor: color.gray[800],
+          color: color.white,
+          backgroundColor: color.gray[600],
           borderColor: color.gray[700],
         };
+      case 'primary':
+        return {
+          color: color.black,
+          backgroundColor: color.gray[50],
+          borderColor: color.gray[50],
+        };
+
       default:
         return {
-          color: color.primary[300],
-          backgroundColor: color.primary[900],
-          borderColor: color.primary[700],
+          color: color.gray[700],
+          backgroundColor: color.white,
+          borderColor: color.gray[300],
         };
     }
   };
@@ -113,31 +96,32 @@ export function AppButton(props: ButtonProps) {
   const styles = StyleSheet.create({
     titleDefault: {
       ...mappingTitleStyleButton(),
-      color: isDisable ? color.gray[500] : color.gray[950],
+      color: isDisable ? color.gray[400] : color.white,
     },
     containerDefault: {
-      ...S.rowCenterAll,
+      borderRadius: ms(360),
       ...mappingPaddingSizeButton(),
-      borderRadius: mappingBorderRadius(),
-      backgroundColor: isDisable ? color.gray[600] : color.warning[500],
+      backgroundColor: isDisable ? color.gray[100] : color.primary[600],
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
       borderWidth: ms(1),
-      borderColor: isDisable ? color.gray[600] : color.warning[500],
+      borderColor: isDisable ? color.gray[200] : color.primary[600],
     },
     titleOutLine: {
       ...mappingTitleStyleButton(),
-      color: isDisable ? color.gray[600] : mappingOutlineColor().color,
+      color: mappingOutlineColor().color,
     },
     outLineContainer: {
-      ...S.rowCenterAll,
+      borderRadius: ms(360),
       ...mappingPaddingSizeButton(),
-      borderRadius: mappingBorderRadius(),
-      backgroundColor: isDisable
-        ? color.gray[900]
-        : mappingOutlineColor().backgroundColor,
+      backgroundColor: mappingOutlineColor().backgroundColor,
+      opacity: isDisable ? 0.3 : 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
       borderWidth: ms(1),
-      borderColor: isDisable
-        ? color.gray[800]
-        : mappingOutlineColor().borderColor,
+      borderColor: mappingOutlineColor().borderColor,
     },
   });
 

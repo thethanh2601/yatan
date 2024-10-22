@@ -19,8 +19,7 @@ import ForgotPasswordScreen from '../screens/auth/forgot-password-screen';
 import NotificationScreen from '../screens/notification-screen';
 import TaskListScreen from '../screens/task-list-screen';
 import FriendScreen from '../screens/friend-screen';
-import FriendsProfile from '../screens/friends-profile-screen';
-import FriendsProfileScreen from '../screens/friends-profile-screen';
+import profileScreen from '../screens/profile/profile-screen';
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -33,7 +32,7 @@ export type AppStackParamList = {
   ForgotPasswordScreen: undefined;
   NotificationScreen: undefined;
   TaskListScreen: undefined;
-  FriendsProfileScreen: undefined;
+  ProfileScreen: { profileId: string };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -73,10 +72,7 @@ const AppStack = () => {
       {/* Stack */}
       <Stack.Screen name={'LoginScreen'} component={LoginScreen} />
       <Stack.Screen name={'DashboardScreen'} component={DashboardScreen} />
-      <Stack.Screen
-        name={'FriendsProfileScreen'}
-        component={FriendsProfileScreen}
-      />
+      <Stack.Screen name={'ProfileScreen'} component={profileScreen} />
       <Stack.Screen name={'FriendScreen'} component={FriendScreen} />
       <Stack.Screen name={'CameraScreen'} component={CameraScreen} />
       <Stack.Screen

@@ -40,14 +40,14 @@ const ForgotPasswordScreen = ({
 
   return (
     <SafeAreaView style={S.screen}>
-      <NavBar title="Lịch sử chấm công" onTouchBtnBack={navigation.goBack} />
+      <NavBar title="Quên mật khẩu" onTouchBtnBack={navigation.goBack} />
       <View
         style={{ gap: ms(24), marginHorizontal: ms(16), marginTop: ms(36) }}>
         <AppInput
           control={control}
           name={'username'}
-          title="Mã nhân viên/ Email"
-          placeholder="Điền mã nhân viên"
+          title=" Email"
+          placeholder="Điền gmail"
           autoCapitalize="none"
           require
         />
@@ -55,6 +55,7 @@ const ForgotPasswordScreen = ({
           title="Gửi yêu cầu"
           onPress={handleSubmit(onSubmit)}
           loading={loading}
+          outLine="gray"
         />
       </View>
     </SafeAreaView>

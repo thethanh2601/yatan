@@ -65,6 +65,7 @@ const LoginScreen = ({ navigation, route }: LoginScreenProps) => {
           title="Đăng nhập"
           onPress={handleSubmit(onSubmit)}
           loading={loading}
+          outLine="gray"
         />
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgotPasswordScreen')}>

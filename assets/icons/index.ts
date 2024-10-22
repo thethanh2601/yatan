@@ -71,3 +71,4 @@ export { default as CalendarCheck01 } from './calendar-check-01.tsx';
 export { default as MarkerPin02 } from './marker-pin-02.tsx';
 export { default as XClose } from './x-close.tsx';
 export { default as Ellipse } from './ellipse.tsx';
+export { default as PlusCircle } from './plus-circle.tsx';

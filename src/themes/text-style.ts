@@ -148,7 +148,7 @@ const TextStyle = StyleSheet.create({
   },
   displayXsSemibold: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: ms(24),
+    fontSize: ms(22),
     lineHeight: ms(32),
     color: color.gray[900],
   },

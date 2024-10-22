@@ -74,7 +74,6 @@ const CameraScreen = ({ navigation, route }: CameraScreenProps) => {
       enableAutoRedEyeReduction: true,
     });
     setPhoto(photo);
-    console.log('photo', photo);
   };
 
   const uploadPhoto = async () => {
@@ -83,7 +82,6 @@ const CameraScreen = ({ navigation, route }: CameraScreenProps) => {
     }
     const result = await fetch(`file://${photo.path}`);
     const data = await result.blob();
-    console.log('data', data);
   };
 
   if (!hasPermission) return <ActivityIndicator />;
