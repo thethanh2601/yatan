@@ -8,10 +8,10 @@ import {
   View,
 } from 'react-native';
 import { DateType } from 'react-native-ui-datepicker';
-import { AppButton, NavBar } from '../components';
-import AppCalendar from '../components/app-calendar';
-import { AppStackScreenProps } from '../navigation';
-import { S, TS, color, ms } from '../themes';
+import { AppButton, NavBar } from '../../components';
+import AppCalendar from '../../components/app-calendar';
+import { AppStackScreenProps } from '../../navigation';
+import { S, TS, color, ms } from '../../themes';
 
 interface FriendScreenScreenProps extends AppStackScreenProps<'FriendScreen'> {}
 
@@ -20,7 +20,7 @@ const FriendScreen = ({ navigation, route }: FriendScreenScreenProps) => {
 
   return (
     <SafeAreaView style={S.screen}>
-      <NavBar title="Lịch sử chấm công" onTouchBtnBack={navigation.goBack} />
+      <NavBar title="Danh sách bạn bè" onTouchBtnBack={navigation.goBack} />
       <AppCalendar date={date} setDate={setDate} />
 
       <View style={[S.rowCenter, { gap: ms(12), marginHorizontal: ms(16) }]}>

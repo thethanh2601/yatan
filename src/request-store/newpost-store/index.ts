@@ -47,6 +47,90 @@ const DATA: Item[] = [
     ],
   },
   {
+    id: '1',
+    name: 'Xoài non',
+    nickname: 'ChanChan',
+    numFollowers: 150,
+    biography: 'Yêu thích du lịch và chụp ảnh.',
+    avata:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxkmyw35oN5VxFtxNIOFDzf4MnDzXPQ_KwWw&s',
+    title: '2006',
+    date: '16:24',
+    image: [
+      'https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-dep-ve-du-lich-viet-nam-cho-dien-thoai-5-inkythuatso-08-14-13-53.jpg',
+      'https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-dep-ve-du-lich-viet-nam-cho-dien-thoai-2-inkythuatso-08-14-13-18.jpg',
+      'https://cdnphoto.dantri.com.vn/SXdaHVAGLqUGdM-s0UxRuV0y7SU=/thumb_w/960/2021/05/15/co-gai-noi-nhu-con-vi-anh-can-cuoc-xinh-nhu-mong-nhan-sac-ngoai-doi-con-bat-ngo-hon-5-1621075314076.jpg',
+      'https://nguoiduatin.mediacdn.vn/m24/upload/3-2023/images/2023-08-15/Ngam-than-hinh-phu-huynh-cua-gai-xinh-co-doi-tu-gay-tranh-cai-12-1692073627-320-width650height808.jpg',
+    ],
+    follow: false,
+    like: 90,
+    comment: [
+      {
+        id: '2039023',
+        name: 'Mai Ngân',
+        avata:
+          'https://cdnphoto.dantri.com.vn/kORDAkSoS3Yox9gAeQyTOzFk1kw=/thumb_w/1920/2023/10/05/tttn6889-copy-1696489369175.jpg',
+        title: 'đẹp ko nè',
+      },
+      {
+        id: '2848904',
+        name: 'Minh Nguyệt',
+        avata:
+          'https://cdnphoto.dantri.com.vn/VMuPPAn0dwo7icDtnbfff7NBgeA=/thumb_w/1920/2023/10/05/36472738964603545806843748075923560251034683n-1696491356088.jpg',
+        title: 'đẹp thì lên đồ thôi',
+      },
+      {
+        id: '2847896',
+        name: 'Mai Hương',
+        avata:
+          'https://kenh14cdn.com/203336854389633024/2024/5/30/photo-6-1717075985235439521576.jpg',
+        title: 'Lên lịch thôi dì',
+      },
+    ],
+  },
+  {
+    id: '1',
+    name: 'Xoài non',
+    nickname: 'ChanChan',
+    numFollowers: 150,
+    biography: 'Yêu thích du lịch và chụp ảnh.',
+    avata:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxkmyw35oN5VxFtxNIOFDzf4MnDzXPQ_KwWw&s',
+    title: '2006',
+    date: '16:24',
+    image: [
+      'https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-dep-ve-du-lich-viet-nam-cho-dien-thoai-5-inkythuatso-08-14-13-53.jpg',
+      'https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-dep-ve-du-lich-viet-nam-cho-dien-thoai-2-inkythuatso-08-14-13-18.jpg',
+      'https://cdnphoto.dantri.com.vn/SXdaHVAGLqUGdM-s0UxRuV0y7SU=/thumb_w/960/2021/05/15/co-gai-noi-nhu-con-vi-anh-can-cuoc-xinh-nhu-mong-nhan-sac-ngoai-doi-con-bat-ngo-hon-5-1621075314076.jpg',
+      'https://nguoiduatin.mediacdn.vn/m24/upload/3-2023/images/2023-08-15/Ngam-than-hinh-phu-huynh-cua-gai-xinh-co-doi-tu-gay-tranh-cai-12-1692073627-320-width650height808.jpg',
+    ],
+    follow: false,
+    like: 90,
+    comment: [
+      {
+        id: '2039023',
+        name: 'Mai Ngân',
+        avata:
+          'https://cdnphoto.dantri.com.vn/kORDAkSoS3Yox9gAeQyTOzFk1kw=/thumb_w/1920/2023/10/05/tttn6889-copy-1696489369175.jpg',
+        title: 'đẹp ko nè',
+      },
+      {
+        id: '2848904',
+        name: 'Minh Nguyệt',
+        avata:
+          'https://cdnphoto.dantri.com.vn/VMuPPAn0dwo7icDtnbfff7NBgeA=/thumb_w/1920/2023/10/05/36472738964603545806843748075923560251034683n-1696491356088.jpg',
+        title: 'đẹp thì lên đồ thôi',
+      },
+      {
+        id: '2847896',
+        name: 'Mai Hương',
+        avata:
+          'https://kenh14cdn.com/203336854389633024/2024/5/30/photo-6-1717075985235439521576.jpg',
+        title: 'Lên lịch thôi dì',
+      },
+    ],
+  },
+  {
     id: '2',
     name: 'Hoà mizy',
     nickname: 'hoà hoà',

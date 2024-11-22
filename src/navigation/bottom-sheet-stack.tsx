@@ -1,13 +1,13 @@
 import {
   BottomTabScreenProps,
-  createBottomTabNavigator
+  createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { Menu, MenuFill } from '../../assets/icons';
-import DashboardScreen from '../screens/dashboard-screen';
+import DashboardScreen from '../screens/home/dashboard-screen';
 import { color, ms, S, TS } from '../themes';
 import { AppStackParamList, AppStackScreenProps } from './navigation';
 

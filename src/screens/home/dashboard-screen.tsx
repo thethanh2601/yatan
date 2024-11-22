@@ -12,17 +12,23 @@ import {
   View,
 } from 'react-native';
 import { DateType } from 'react-native-ui-datepicker';
-import { TabScreenProps } from '../navigation';
-import { S, TS, color, ms } from '../themes';
-import AppAvatar from '../components/app-avatar';
+import { TabScreenProps } from '../../navigation';
+import { S, TS, color, ms } from '../../themes';
+import AppAvatar from '../../components/app-avatar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { CloseTag, Ellipse, Logout01, Notification } from '../../assets/icons';
-import ItemHome from '../components/item-home';
-import { BottomSheetApp, BottomSheetAppRef } from '../components';
-import { IComment, Item } from '../models/new-post/newPost';
-import { NewStore } from '../request-store/newpost-store';
-import { NotifiStore } from '../request-store/notification-store';
-import { INotification } from '../models/notification/notification';
+import {
+  CloseTag,
+  Ellipse,
+  Logout01,
+  MessageTextSquare02,
+  Notification,
+} from '../../../assets/icons';
+import ItemHome from '../../components/item-home';
+import { BottomSheetApp, BottomSheetAppRef } from '../../components';
+import { IComment, Item } from '../../models/new-post/newPost';
+import { NewStore } from '../../request-store/newpost-store';
+import { NotifiStore } from '../../request-store/notification-store';
+import { INotification } from '../../models/notification/notification';
 
 interface DashboardScreenProps extends TabScreenProps<'DashboardScreen'> {}
 
@@ -43,7 +49,6 @@ const DashboardScreen = ({ navigation, route }: DashboardScreenProps) => {
     refBottomSheet.current?.show();
   };
   const onNotifiPress = () => {
-    // NotifiStore.updateStatus();
     navigation.replace('NotificationScreen');
   };
 
@@ -98,8 +103,8 @@ const DashboardScreen = ({ navigation, route }: DashboardScreenProps) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ padding: ms(10) }}
-              onPress={() => navigation.navigate('LoginScreen')}>
-              <Logout01 />
+              onPress={() => navigation.navigate('MessengerScreeen')}>
+              <MessageTextSquare02 />
             </TouchableOpacity>
           </View>
         </View>

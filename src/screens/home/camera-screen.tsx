@@ -9,8 +9,8 @@ import {
   View,
 } from 'react-native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { S, TS, color, ms } from '../themes';
-import { AppStackScreenProps, TabParamList } from '../navigation';
+import { S, TS, color, ms } from '../../themes';
+import { AppStackScreenProps, TabParamList } from '../../navigation';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {
   Camera,

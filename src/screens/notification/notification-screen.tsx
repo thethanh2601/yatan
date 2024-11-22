@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { S, ms } from '../themes';
-import { NavBar } from '../components';
-import { AppStackScreenProps } from '../navigation';
-import { NotifiStore } from '../request-store/notification-store';
-import { INotification } from '../models/notification/notification';
+import { S, ms } from '../../themes';
+import { NavBar } from '../../components';
+import { AppStackScreenProps } from '../../navigation';
+import { NotifiStore } from '../../request-store/notification-store';
+import { INotification } from '../../models/notification/notification';
 import { observer } from 'mobx-react-lite';
 import { FlatList } from 'react-native-gesture-handler';
 

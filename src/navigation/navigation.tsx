@@ -13,13 +13,15 @@ import React from 'react';
 import { ColorSchemeName } from 'react-native';
 import LoginScreen from '../screens/auth/login-screen';
 
-import DashboardScreen from '../screens/dashboard-screen';
-import CameraScreen from '../screens/camera-screen';
+import DashboardScreen from '../screens/home/dashboard-screen';
+import CameraScreen from '../screens/home/camera-screen';
 import ForgotPasswordScreen from '../screens/auth/forgot-password-screen';
-import NotificationScreen from '../screens/notification-screen';
+import NotificationScreen from '../screens/notification/notification-screen';
 import TaskListScreen from '../screens/task-list-screen';
-import FriendScreen from '../screens/friend-screen';
+import FriendScreen from '../screens/friend/friend-screen';
 import profileScreen from '../screens/profile/profile-screen';
+import MessengerScreeen from '../screens/messenger/messenger-screeen';
+import InboxScreen from '../screens/messenger/inbox-screen';
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -33,6 +35,8 @@ export type AppStackParamList = {
   NotificationScreen: undefined;
   TaskListScreen: undefined;
   ProfileScreen: { profileId: string };
+  MessengerScreeen: undefined;
+  InboxScreen: { inboxId: string };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -83,6 +87,8 @@ const AppStack = () => {
         name={'NotificationScreen'}
         component={NotificationScreen}
       />
+      <Stack.Screen name={'MessengerScreeen'} component={MessengerScreeen} />
+      <Stack.Screen name={'InboxScreen'} component={InboxScreen} />
       <Stack.Screen name={'TaskListScreen'} component={TaskListScreen} />
     </Stack.Navigator>
   );

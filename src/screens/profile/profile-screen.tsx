@@ -26,13 +26,14 @@ import ImageScreen from './image-screen';
 import RepostScreen from './repost-screen';
 
 interface ProfileScreenProps extends AppStackScreenProps<'ProfileScreen'> {}
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const TAB_WIDTH = width / 3;
 
 const ProfileScreen = ({ navigation, route }: ProfileScreenProps) => {
   const profileId = route.params?.profileId;
   const dataItem = NewStore.listSelectData.find(item => item.id === profileId);
   const [follow, setFollow] = useState(dataItem?.follow);
+  const [show, setShow] = useState(true); // Trạng thái điều khiển show/hide
   const modalConfirmRef = useRef<ConfirmModalRef>(null);
 
   const translateX = useSharedValue(0);
@@ -50,7 +51,7 @@ const ProfileScreen = ({ navigation, route }: ProfileScreenProps) => {
   const renderContent = () => {
     switch (activeTab) {
       case 0:
-        return <YatanScreen />;
+        return <YatanScreen profileId={profileId} />;
       case 1:
         return <ImageScreen />;
       case 2:
@@ -75,86 +76,107 @@ const ProfileScreen = ({ navigation, route }: ProfileScreenProps) => {
     NewStore.toggleFollow(id);
     setFollow(pri => !pri);
   };
+
   useEffect(() => {
     NewStore.listSelectData;
   }, [follow]);
+
+  const handleScroll = (event: any) => {
+    const contentOffsetY = event.nativeEvent.contentOffset.y;
+    const screenHeight = height;
+
+    // Kiểm tra khi cuộn lên 1/3 chiều cao màn hình
+    if (contentOffsetY > screenHeight / 3) {
+      setShow(false);
+    }
+  };
+
   return (
     <SafeAreaView style={[S.screen]}>
-      <View style={{ padding: ms(13) }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.replace('DashboardScreen');
-          }}>
-          <ArrowLeft />
-        </TouchableOpacity>
-        <View style={styles.container}>
-          <View style={styles.textContainer}>
-            <Text style={styles.name}>{dataItem?.name}</Text>
-            <Text style={styles.nameId}>{dataItem?.nickname}</Text>
-            <Text style={styles.bio}>{dataItem?.biography}</Text>
-            <Text style={styles.bio}>
-              {dataItem?.numFollowers + ' người theo dõi'}
-            </Text>
+      <ScrollView onScroll={handleScroll} scrollEventThrottle={16}>
+        {/* Lắng nghe sự kiện cuộn */}
+        {show ? (
+          <View style={{ padding: ms(13) }}>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.replace('DashboardScreen');
+                }}>
+                <ArrowLeft />
+              </TouchableOpacity>
+              <View style={styles.container}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.name}>{dataItem?.name}</Text>
+                  <Text style={styles.nameId}>{dataItem?.nickname}</Text>
+                  <Text style={styles.bio}>{dataItem?.biography}</Text>
+                  <Text style={styles.bio}>
+                    {dataItem?.numFollowers + ' người theo dõi'}
+                  </Text>
+                </View>
+                <Image
+                  source={{
+                    uri: dataItem?.avata,
+                  }}
+                  style={styles.profileImage}
+                />
+              </View>
+            </View>
+            <View
+              style={[S.rowCenterSpaceBetween, { paddingHorizontal: ms(26) }]}>
+              <AppButton
+                outLine="gray"
+                title={dataItem?.follow ? 'Đang theo dõi' : 'Theo dõi'}
+                size="md"
+                containerStyle={{
+                  backgroundColor: dataItem?.follow
+                    ? color.gray[300]
+                    : color.black,
+                  borderColor: color.black,
+                  width: ms(150),
+                }}
+                titleStyle={{
+                  color: dataItem?.follow ? color.gray[600] : color.white,
+                }}
+                onPress={onOpenFollow}
+              />
+              <AppButton
+                outLine="gray"
+                title={'Nhắn tin'}
+                size="md"
+                containerStyle={{
+                  backgroundColor: color.gray[300],
+                  borderColor: color.black,
+                  width: ms(150),
+                }}
+                titleStyle={{ color: color.black }}
+                onPress={() => {
+                  navigation.navigate('InboxScreen', { inboxId: '12' });
+                }}
+              />
+            </View>
           </View>
-          <Image
-            source={{
-              uri: dataItem?.avata,
-            }}
-            style={styles.profileImage}
-          />
+        ) : null}
+        <View style={styles.containerTab}>
+          <View style={styles.tabContainer}>
+            <Animated.View style={[styles.tabIndicator, animatedStyle]} />
+            {['Yatan', 'Ảnh', 'Đăng Lại'].map((tab, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => handleTabPress(index)}
+                style={styles.tab}>
+                <Text
+                  style={[
+                    styles.tabText,
+                    activeTab === index && styles.activeTabText,
+                  ]}>
+                  {tab}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          <View style={styles.contentContainer}>{renderContent()}</View>
         </View>
-      </View>
-      <View style={[S.rowCenterSpaceBetween, { paddingHorizontal: ms(26) }]}>
-        <AppButton
-          outLine="gray"
-          title={dataItem?.follow ? 'Đang theo dõi' : 'Theo dõi'}
-          size="md"
-          containerStyle={{
-            backgroundColor: dataItem?.follow ? color.gray[300] : color.black,
-            borderColor: color.black,
-            width: ms(150),
-          }}
-          titleStyle={{
-            color: dataItem?.follow ? color.gray[600] : color.white,
-          }}
-          onPress={onOpenFollow}
-        />
-        <AppButton
-          outLine="gray"
-          title={'Nhắn tin'}
-          size="md"
-          containerStyle={{
-            backgroundColor: color.gray[300],
-            borderColor: color.black,
-            width: ms(150),
-          }}
-          titleStyle={{ color: color.black }}
-          onPress={() => {
-            setFollow(pri => !pri);
-          }}
-        />
-      </View>
-
-      <View style={styles.containerTab}>
-        <View style={styles.tabContainer}>
-          <Animated.View style={[styles.tabIndicator, animatedStyle]} />
-          {['Yatan', 'Ảnh', 'Đăng Lại'].map((tab, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => handleTabPress(index)}
-              style={styles.tab}>
-              <Text
-                style={[
-                  styles.tabText,
-                  activeTab === index && styles.activeTabText,
-                ]}>
-                {tab}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <View style={styles.contentContainer}>{renderContent()}</View>
-      </View>
+      </ScrollView>
 
       <ConfirmModal
         ref={modalConfirmRef}
@@ -174,17 +196,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    // Đường viền dưới
   },
   textContainer: {
-    marginLeft: ms(10), // Khoảng cách giữa ảnh và chữ
+    marginLeft: ms(10),
     flex: 1,
     gap: ms(2),
   },
   profileImage: {
-    width: ms(70), // Kích thước ảnh
+    width: ms(70),
     height: ms(70),
-    borderRadius: ms(99), // Để ảnh tròn
+    borderRadius: ms(99),
   },
   name: {
     ...TS.displayXsSemibold,
@@ -202,13 +223,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: ms(12),
+    marginTop: ms(4),
   },
   tabContainer: {
     flexDirection: 'row',
     width: '100%',
     position: 'relative',
-    height: 40,
+    height: 30,
   },
   tab: {
     width: TAB_WIDTH,
@@ -234,10 +255,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  contentText: {
-    fontSize: 20,
-    color: color.gray[100],
-    marginTop: ms(100),
   },
 });

@@ -17,14 +17,17 @@ import { NewStore } from '../../request-store/newpost-store';
 import { BottomSheetApp, BottomSheetAppRef } from '../../components';
 import { CloseTag } from '../../../assets/icons';
 import AppAvatar from '../../components/app-avatar';
+interface YatanScreenProps {
+  profileId: string | undefined;
+}
 
-const YatanScreen = () => {
+const YatanScreen = ({ profileId }: YatanScreenProps) => {
   const navigation =
     useNavigation<NavigationProp<AppStackParamList, 'ProfileScreen'>>();
   const [selectedComments, setSelectedComments] = useState<IComment[]>([]);
   const { height } = Dimensions.get('window');
   const refBottomSheet = useRef<BottomSheetAppRef>();
-  const data = NewStore.listSelectData;
+  const data = NewStore.listSelectData.filter(item => item.id === profileId);
   const ICommentPress = (comments: IComment[]) => {
     setSelectedComments(comments); //
     refBottomSheet.current?.show();
@@ -41,8 +44,8 @@ const YatanScreen = () => {
             isFollow={false}
           />
         )}
-        keyExtractor={item => item.id} // Đảm bảo sử dụng keyExtractor
-        showsVerticalScrollIndicator={false} // Ẩn thanh cuộn ngang (tùy chọn)
+        keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false} // ẩn thanh cuộn dọc
       />
       <BottomSheetApp ref={refBottomSheet} initialSnapPoints={[height]}>
         <SafeAreaView
